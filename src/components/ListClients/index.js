@@ -1,24 +1,36 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { ClientsContainer, ListContainer } from './styles'
+import { getClients } from '../../store/actions/clientsAction'
 
 function ListClients() {
+  let dispatch = useDispatch()
 
-  let list = [
-    { name: 'Luiz', user: 'luiz@gmail.com', company: 'Sistema User ME' },
-    { name: 'Kelly', user: 'kelly@gmail.com', company: 'Sistema Kelly ME' },
-    { name: 'Dante', user: 'dante@gmail.com', company: 'Sistema Dante ME' },
-    { name: 'Divina', user: 'divina@gmail.com', company: 'Sistema Divina ME' },
-  ]
+  let { clients } = useSelector(state => ({
+    clients: state.clientsReducer.clients
+  }))
+
+  useEffect(() => {
+    dispatch(getClients())
+  }, [])
+
+  const onSelectClient = (id) => {
+    console.log('id client ', id)
+  }
+
+  if(!clients.length) {
+    <strong>Carregando...</strong>
+  }
 
   return (
     <ClientsContainer>
-      {list.map((client, index) => {
+      {clients.map((client, index) => {
         return (
-          <ListContainer key={index} onClick={() => {}}>
+          <ListContainer key={client.id} onClick={() => onSelectClient(client.id)}>
             <div className="nameClient">{client.name}</div>
-            <div className="userClient">{client.user}</div>
-            <div className="companyClient">{client.company}</div>
+            <div className="userClient">{client.username}</div>
+            <div className="companyClient">{client.company.name}</div>
           </ListContainer>
         )
       })}

@@ -5,6 +5,7 @@ export const ClientsContainer = styled.div`
   width: 75%;
   margin-top: 15px;
   padding: 30px;
+  overflow: auto;
 `
 export const ListContainer = styled.div`
   background: #eee;
