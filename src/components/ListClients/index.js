@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { ClientsContainer, ListContainer } from './styles'
-import { getClients } from '../../store/actions/clientsAction'
+import { getClients, idClientSelected } from '../../store/actions/clientsAction'
 
 function ListClients() {
   let dispatch = useDispatch()
@@ -16,7 +16,7 @@ function ListClients() {
   }, [])
 
   const onSelectClient = (id) => {
-    console.log('id client ', id)
+    dispatch(idClientSelected(id))
   }
 
   if(!clients.length) {
