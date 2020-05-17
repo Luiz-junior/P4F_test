@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import api from '../../services/api';
-import { GET_CLIENTS, GET_PHOTOS_CLIENT, ID_CLIENT_SELECTED, SET_CLIENT_SELECTED, ERROR } from './types';
+import { GET_CLIENTS, GET_PHOTOS_CLIENT, ID_CLIENT_SELECTED, SET_CLIENT_SELECTED, GET_POSTS_CLIENT, ERROR } from './types';
 
 export const getClients = () => {
   return async dispatch => {
@@ -52,5 +52,21 @@ export const setClientSelected = (clientSelected) => {
       type: SET_CLIENT_SELECTED,
       clientSelected,
     })
+  }
+}
+
+export const getPostsClient = (id) => {
+  return async dispatch => {
+    let res = await axios.get(`https://jsonplaceholder.typicode.com/posts?userId=${id}`)
+    
+    try {
+      dispatch({
+        type: GET_POSTS_CLIENT,
+        postsClient: res.data,
+        loading: false
+      })
+    } catch (error) {
+      dispatch({ type: ERROR, errorStatus: error, loading: false })
+    }
   }
 }

@@ -38,7 +38,7 @@ export const TabMenuContainer = styled.div`
 
       .nameClient, .userClient, .userAddress, .companyClient {
         font-weight: 300;
-        padding: 5px 0px;
+        /* padding: 5px 0px; */
       }
     }
 

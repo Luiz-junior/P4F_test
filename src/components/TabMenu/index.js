@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import styles from 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 import { TabMenuContainer } from './styles'
-import { getPhotosClient, setClientSelected } from '../../store/actions/clientsAction'
+import { getPhotosClient, setClientSelected, getPostsClient } from '../../store/actions/clientsAction'
 
 const posts = [
   {
@@ -26,23 +26,27 @@ function TabMenu() {
 
   const [firstRequest, setFirstRequest] = useState(true)
 
-  let { photosClient, idClientSelect, clients, clientSelected } = useSelector(state => ({
+  let { photosClient, idClientSelect, clients, clientSelected, postsClient } = useSelector(state => ({
     clients: state.clientsReducer.clients,
     photosClient: state.clientsReducer.photosClient,
     idClientSelect: state.clientsReducer.idClientSelect,
-    clientSelected: state.clientsReducer.clientSelected
+    clientSelected: state.clientsReducer.clientSelected,
+    postsClient: state.clientsReducer.postsClient,
   }))
 
   useEffect(() => {
-    if (firstRequest)
+    if (firstRequest) {
       dispatch(getPhotosClient(1))
+      dispatch(getPostsClient(1))
+    }
     else {
       dispatch(getPhotosClient(idClientSelect))
+      dispatch(getPostsClient(idClientSelect))
 
       let clientSelected = clients.filter(client => client.id === idClientSelect)
       dispatch(setClientSelected(...clientSelected))
-    } 
-    
+    }
+
     setFirstRequest(false)
   }, [idClientSelect])
 
@@ -59,6 +63,8 @@ function TabMenu() {
     }
   }
 
+  let { name, address } = clientSelected
+
   return (
     <TabMenuContainer>
       <div className="tabHeader">
@@ -68,55 +74,66 @@ function TabMenu() {
 
       {/* TAB 1 */}
       <div id="photos" className="tabContent" style={{ display: displayPhotos }}>
-        { console.log('SELECT', clientSelected) }
-        <section className="userSelect">
-          <div className="nameClient">Luiz</div>
-          <div className="userClient">luiz@gmail.com</div>
-          <div className="userAddress">Alameda Itapecuru - Alphaville</div>
-          <div className="companyClient">Sistema User ME</div>
-        </section>
-        
+
+        {idClientSelect == 0 && clients.length > 0 && (
+          <section className="userSelect">
+            <span className="nameClient">{clients[0].name}</span> <br />
+            <span className="userClient">Endereço:</span> <br />
+            <span className="userAddress">{clients[0].address.street} {clients[0].address.suite} </span><br />
+            <span className="userAddress">{clients[0].address.city}- CEP: {clients[0].address.zipcode}</span>
+          </section>
+        )}
+
+        {clientSelected.name !== undefined && (
+          < section className="userSelect">
+            <span className="nameClient">{name}</span> <br />
+            <span className="userClient">Endereço:</span> <br />
+            <span className="userAddress">{address.street} {address.suite} </span><br />
+            <span className="userAddress">{address.city}- CEP: {address.zipcode}</span>
+          </section>
+        )}
+
         <Carousel>
           <div>
             {photosClient.length > 0 && photosClient.map(post => {
               return <img key={post.id} src={post.url} />
             })}
           </div>
-
-          {/* <div>
-            <img src="https://via.placeholder.com/600/771796" />
-          </div>
-          <div>
-            <img src="https://via.placeholder.com/600/92c952" />
-          </div>
-          <div>
-            <img src="https://via.placeholder.com/600/d32776" />
-          </div>
-          <div>
-            <img src="https://via.placeholder.com/600/771796" />
-          </div> */}
         </Carousel>
       </div>
 
       {/* TAB 2 */}
       <div id="posts" className="tabContent" style={{ display: displayPosts }}>
-        <section className="userSelect">
-          <div className="nameClient">Luiz</div>
-          <div className="userClient">luiz@gmail.com</div>
-          <div className="userAddress">Alameda Itapecuru - Alphaville</div>
-          <div className="companyClient">Sistema User ME</div>
-        </section>
+        {idClientSelect == 0 && clients.length > 0 && (
+          <section className="userSelect">
+            <span className="nameClient">{clients[0].name}</span> <br />
+            <span className="userClient">Endereço:</span> <br />
+            <span className="userAddress">{clients[0].address.street} {clients[0].address.suite} </span><br />
+            <span className="userAddress">{clients[0].address.city}- CEP: {clients[0].address.zipcode}</span>
+          </section>
+        )}
 
-        {posts.map((post, index) => {
-          return (
-            <div key={index} className="postContainer">
-              <strong>{post.title}</strong>
-              <p>{post.body}</p>
-            </div>
-          )
-        })}
+        {clientSelected.name !== undefined && (
+          < section className="userSelect">
+            <span className="nameClient">{name}</span> <br />
+            <span className="userClient">Endereço:</span> <br />
+            <span className="userAddress">{address.street} {address.suite} </span><br />
+            <span className="userAddress">{address.city}- CEP: {address.zipcode}</span>
+          </section>
+        )}
+
+        {postsClient.length > 0 && (
+          postsClient.map(post => {
+            return (
+              <div key={post.id} className="postContainer">
+                <strong>{post.title}</strong>
+                <p>{post.body}</p>
+              </div>
+            )
+          })
+        )}
       </div>
-    </TabMenuContainer>
+    </TabMenuContainer >
   )
 }
 

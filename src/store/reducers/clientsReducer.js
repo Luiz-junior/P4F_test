@@ -1,8 +1,9 @@
-import { GET_CLIENTS, GET_PHOTOS_CLIENT, ID_CLIENT_SELECTED, SET_CLIENT_SELECTED, ERROR  } from '../actions/types';
+import { GET_CLIENTS, GET_PHOTOS_CLIENT, ID_CLIENT_SELECTED, SET_CLIENT_SELECTED, GET_POSTS_CLIENT, ERROR } from '../actions/types';
 
 const initialState = {
   clients: [],
   photosClient: [],
+  postsClient: [],
   idClientSelect: 0,
   clientSelected: {},
   loading: true,
@@ -19,6 +20,8 @@ const clientsReducer = (state = initialState, action) => {
       return { ...state, idClientSelect: action.idClientSelect }
     case SET_CLIENT_SELECTED:
       return { ...state, clientSelected: action.clientSelected }
+    case GET_POSTS_CLIENT:
+      return { ...state, postsClient: action.postsClient }
     default:
       return state;
   }
