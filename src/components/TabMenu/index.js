@@ -6,6 +6,30 @@ import styles from 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { TabMenuContainer } from './styles'
 import { getPhotosClient, setClientSelected, getPostsClient } from '../../store/actions/clientsAction'
 
+const FirstClient = ({ clients }) => {
+  return (
+    <section className="userSelect">
+      <span className="nameClient">{clients[0].name}</span> <br />
+      <span className="userClient">Endereço:</span> <br />
+      <span className="userAddress">{clients[0].address.street} {clients[0].address.suite} </span><br />
+      <span className="userAddress">{clients[0].address.city}- CEP: {clients[0].address.zipcode}</span>
+    </section>
+  )
+}
+
+const ClientSelected = ({ clientSelected }) => {
+  let { name, address } = clientSelected
+
+  return (
+    <section className="userSelect">
+      <span className="nameClient">{name}</span> <br />
+      <span className="userClient">Endereço:</span> <br />
+      <span className="userAddress">{address.street} {address.suite} </span><br />
+      <span className="userAddress">{address.city}- CEP: {address.zipcode}</span>
+    </section>
+  )
+}
+
 function TabMenu() {
   let dispatch = useDispatch()
 
@@ -48,8 +72,6 @@ function TabMenu() {
     }
   }
 
-  let { name, address } = clientSelected
-
   return (
     <TabMenuContainer>
       <div className="tabHeader">
@@ -60,23 +82,9 @@ function TabMenu() {
       {/* TAB 1 */}
       <div id="photos" className="tabContent" style={{ display: displayPhotos }}>
 
-        {idClientSelect == 0 && clients.length > 0 && (
-          <section className="userSelect">
-            <span className="nameClient">{clients[0].name}</span> <br />
-            <span className="userClient">Endereço:</span> <br />
-            <span className="userAddress">{clients[0].address.street} {clients[0].address.suite} </span><br />
-            <span className="userAddress">{clients[0].address.city}- CEP: {clients[0].address.zipcode}</span>
-          </section>
-        )}
+        {idClientSelect == 0 && clients.length > 0 && <FirstClient clients={clients} />}
 
-        {clientSelected.name !== undefined && (
-          < section className="userSelect">
-            <span className="nameClient">{name}</span> <br />
-            <span className="userClient">Endereço:</span> <br />
-            <span className="userAddress">{address.street} {address.suite} </span><br />
-            <span className="userAddress">{address.city}- CEP: {address.zipcode}</span>
-          </section>
-        )}
+        {clientSelected.name !== undefined && <ClientSelected clientSelected={clientSelected} />}
 
         <Carousel className="carousel">
           <div>
@@ -89,23 +97,9 @@ function TabMenu() {
 
       {/* TAB 2 */}
       <div id="posts" className="tabContent" style={{ display: displayPosts }}>
-        {idClientSelect == 0 && clients.length > 0 && (
-          <section className="userSelect">
-            <span className="nameClient">{clients[0].name}</span> <br />
-            <span className="userClient">Endereço:</span> <br />
-            <span className="userAddress">{clients[0].address.street} {clients[0].address.suite} </span><br />
-            <span className="userAddress">{clients[0].address.city}- CEP: {clients[0].address.zipcode}</span>
-          </section>
-        )}
+        {idClientSelect == 0 && clients.length > 0 && <FirstClient clients={clients} />}
 
-        {clientSelected.name !== undefined && (
-          < section className="userSelect">
-            <span className="nameClient">{name}</span> <br />
-            <span className="userClient">Endereço:</span> <br />
-            <span className="userAddress">{address.street} {address.suite} </span><br />
-            <span className="userAddress">{address.city}- CEP: {address.zipcode}</span>
-          </section>
-        )}
+        {clientSelected.name !== undefined && <ClientSelected clientSelected={clientSelected} />}
 
         {postsClient.length > 0 && (
           postsClient.map(post => {

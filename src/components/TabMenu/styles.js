@@ -3,8 +3,6 @@ import styled from 'styled-components'
 export const TabMenuContainer = styled.div`
   background: #fff;
   margin-top: 15px;
-  /* width: 70vw; */
-  /* width: 100vw; */
   padding: 0px 50px;
   overflow: hidden;
   display: flex;
