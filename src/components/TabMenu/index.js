@@ -87,16 +87,21 @@ function TabMenu() {
         {clientSelected.name !== undefined && <ClientSelected clientSelected={clientSelected} />}
 
         <Carousel className="carousel">
-          <div>
-            {photosClient.length > 0 && photosClient.map(post => {
-              return <img key={post.id} src={post.url} />
-            })}
-          </div>
+
+          {photosClient.length > 0 && photosClient.map(post => {
+            return (
+              <div>
+                <img key={post.id} src={post.url} alt="Imagens do Carousel" />
+              </div>
+            )
+          })}
+
         </Carousel>
       </div>
 
       {/* TAB 2 */}
       <div id="posts" className="tabContent" style={{ display: displayPosts }}>
+
         {idClientSelect == 0 && clients.length > 0 && <FirstClient clients={clients} />}
 
         {clientSelected.name !== undefined && <ClientSelected clientSelected={clientSelected} />}
