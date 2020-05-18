@@ -6,21 +6,6 @@ import styles from 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { TabMenuContainer } from './styles'
 import { getPhotosClient, setClientSelected, getPostsClient } from '../../store/actions/clientsAction'
 
-const posts = [
-  {
-    title: 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit',
-    body: 'uia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto'
-  },
-  {
-    title: 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit',
-    body: 'uia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto'
-  },
-  {
-    title: 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit',
-    body: 'uia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto'
-  }
-]
-
 function TabMenu() {
   let dispatch = useDispatch()
 
@@ -93,7 +78,7 @@ function TabMenu() {
           </section>
         )}
 
-        <Carousel>
+        <Carousel className="carousel">
           <div>
             {photosClient.length > 0 && photosClient.map(post => {
               return <img key={post.id} src={post.url} />

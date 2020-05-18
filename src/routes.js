@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 
-import Photos from './pages/Photos'
+import Home from './pages/Home'
 import Posts from './pages/Posts'
 
 function Routes() {
@@ -9,10 +9,7 @@ function Routes() {
     <Router>
       <Switch>
         <Route path="/" exact>
-          <Photos />
-        </Route>
-        <Route path="/posts">
-          <Posts />
+          <Home />
         </Route>
       </Switch>
     </Router>

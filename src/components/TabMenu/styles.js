@@ -2,14 +2,27 @@ import styled from 'styled-components'
 
 export const TabMenuContainer = styled.div`
   background: #fff;
-  /* height: 50px; */
   margin-top: 15px;
-  width: 88%;
+  /* width: 70vw; */
+  /* width: 100vw; */
   padding: 0px 50px;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+
+  @media (min-width: 768px) {
+    width: 88%; 
+  }
 
   .tabHeader {
     border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+
+    @media (min-width: 768px) {
+      justify-content: initial;
+    }
   }
 
   .tabBtn {
@@ -30,8 +43,11 @@ export const TabMenuContainer = styled.div`
   
   .tabContent {
     display: none;
+
     padding-left: 5px;
     background: transparent;
+    height: 100vh;
+    overflow: auto;
 
     .userSelect {
       padding: 10px 0px 10px;
@@ -69,6 +85,27 @@ export const TabMenuContainer = styled.div`
       padding: 15px;
       margin-bottom: 15px;
       border-radius: 5px;
+      width: 80%;
+
+      @media (min-width: 768px) {
+        width: 95%;
+      }
+    }
+  }
+
+  #posts, #photos {
+    width: 75vw;
+
+    @media (min-width: 768px) {
+      width: 63vw;
+    }
+  }
+
+  .carousel {
+    width: 70vw;
+
+    @media (min-width: 768px) {
+      width: initial;
     }
   }
 `
