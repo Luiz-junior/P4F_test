@@ -1,13 +1,35 @@
-import configureMockStore from "redux-mock-store";
-import thunk from 'redux-thunk'
-import fetchMock from "fetch-mock";
+/* eslint-disable no-undef */
+/* import configureMockStore from "redux-mock-store"; */
+/* import fetchMock from "fetch-mock"; */
+/* import thunk from 'redux-thunk' */
 import * as actions from "./clientsAction";
 import * as types from "./types";
 
-const middlewares = [thunk];
-const mockStore = configureMockStore(middlewares);
+// const middlewares = [thunk];
+/* const mockStore = configureMockStore(middlewares); */
 
-let clients1 = [
+describe('actions', () => {
+  it('should create action setClientSelected', () => {
+    const idClientSelect = 1
+
+    const expectedAction = {
+      type: types.ID_CLIENT_SELECTED,
+      idClientSelect
+    }
+    expect(actions.idClientSelected(idClientSelect)).toEqual(expectedAction)
+  })
+
+  it('should create action idClientSelected ', () => {
+    const expectedAction = {
+      type: types.SET_CLIENT_SELECTED,
+      clientSelected
+    }
+    expect(actions.setClientSelected(clientSelected)).toEqual(expectedAction)
+  });
+})
+
+
+/* let clients = [
   {
     id: 1,
     name: "Leanne Graham",
@@ -78,27 +100,7 @@ const clientSelected = {
     catchPhrase: "Proactive didactic contingency",
     bs: "synergize scalable supply-chains",
   },
-}
-
-describe('actions', () => {
-  it('should create action setClientSelected', () => {
-    const idClientSelect = 1
-
-    const expectedAction = {
-      type: types.ID_CLIENT_SELECTED,
-      idClientSelect
-    }
-    expect(actions.idClientSelected(idClientSelect)).toEqual(expectedAction)
-  })
-
-  it('should create action idClientSelected ', () => {
-    const expectedAction = {
-      type: types.SET_CLIENT_SELECTED,
-      clientSelected
-    }
-    expect(actions.setClientSelected(clientSelected)).toEqual(expectedAction)
-  });
-})
+} */
 
 /* describe("async actions", () => {
   afterEach(() => {
@@ -107,13 +109,13 @@ describe('actions', () => {
 
   it("create action GET_CLIENTS", () => {
     fetchMock.getOnce('/users', {
-      body: { clients1 },
+      body: { clients },
       headers: { 'content-type': 'application/json' }
     })
 
     const expectedAction = {
       type: types.GET_CLIENTS,
-      clients1
+      clients
     };
 
     const store = mockStore({ clients: [] })
