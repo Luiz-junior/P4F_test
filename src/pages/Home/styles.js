@@ -4,13 +4,12 @@ export const HomeContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background: #eee;
 `
 export const SectionListClients = styled.section`
   display: ${props => props.display.displayListClients};
   justify-content: center;
-  background: #eee;
   width: 100%;
-  height: 100%;
 
   @media (min-width: 768px) {
     width: 30%; 
@@ -19,9 +18,7 @@ export const SectionListClients = styled.section`
 `
 
 export const SectionMain = styled.section`
-  background: #eee; 
   width: 100%; 
-  height: 100%;
   display: ${props => props.display.displayTabMenu};
 
   @media (min-width: 768px) {

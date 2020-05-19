@@ -12,6 +12,7 @@ import {
 } from "../../store/actions/clientsAction";
 
 const FirstClient = ({ clients }) => {
+
   return (
     <section className="userSelect">
       <span className="nameClient">{clients[0].name}</span> <br />
@@ -97,27 +98,14 @@ function TabMenu() {
   return (
     <TabMenuContainer>
       <div className="tabHeader">
-        <button className="tabBtn" onClick={(e) => openTab(e, "photos")}>
-          Fotos
-        </button>
-        <button className="tabBtn" onClick={(e) => openTab(e, "posts")}>
-          Posts
-        </button>
+        <button className="tabBtn" onClick={(e) => openTab(e, "photos")}> Fotos </button>
+        <button className="tabBtn" onClick={(e) => openTab(e, "posts")}> Posts </button>
       </div>
-
       {/* TAB 1 */}
-      <div
-        id="photos"
-        className="tabContent"
-        style={{ display: displayPhotos }}
-      >
-        {idClientSelect === 0 && clients.length > 0 && (
-          <FirstClient clients={clients} />
-        )}
+      <div id="photos" className="tabContent" style={{ display: displayPhotos }}>
+        {idClientSelect === 0 && clients.length > 0 && (<FirstClient clients={clients} />)}
 
-        {clientSelected.name !== undefined && (
-          <ClientSelected clientSelected={clientSelected} />
-        )}
+        {clientSelected.name !== undefined && (<ClientSelected clientSelected={clientSelected} />)}
 
         <Carousel className="carousel">
           {photosClient.length > 0 &&
@@ -133,13 +121,9 @@ function TabMenu() {
 
       {/* TAB 2 */}
       <div id="posts" className="tabContent" style={{ display: displayPosts }}>
-        {idClientSelect === 0 && clients.length > 0 && (
-          <FirstClient clients={clients} />
-        )}
+        {idClientSelect === 0 && clients.length > 0 && (<FirstClient clients={clients} />)}
 
-        {clientSelected.name !== undefined && (
-          <ClientSelected clientSelected={clientSelected} />
-        )}
+        {clientSelected.name !== undefined && (<ClientSelected clientSelected={clientSelected} />)}
 
         {postsClient.length > 0 &&
           postsClient.map((post) => {
@@ -158,7 +142,7 @@ function TabMenu() {
 export default TabMenu;
 
 FirstClient.propTypes = {
-  clients: PropTypes.object,
+  clients: PropTypes.array,
 };
 
 ClientSelected.propTypes = {

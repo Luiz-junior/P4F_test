@@ -73,7 +73,7 @@ export const TabMenuContainer = styled.div`
 
         .thumb {  
           height: 120px;
-          width: 200px !important;
+          width: 210px !important;
         }
       }
     }
