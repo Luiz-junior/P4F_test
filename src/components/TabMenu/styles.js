@@ -48,11 +48,11 @@ export const TabMenuContainer = styled.div`
     overflow: auto;
 
     .userSelect {
-      padding: 10px 0px 10px;
+      padding: 15px 0px 15px;
 
       .nameClient, .userClient, .userAddress, .companyClient {
         font-weight: 300;
-        /* padding: 5px 0px; */
+        margin: -5px;
       }
     }
 

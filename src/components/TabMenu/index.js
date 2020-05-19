@@ -15,15 +15,15 @@ const FirstClient = ({ clients }) => {
 
   return (
     <section className="userSelect">
-      <span className="nameClient">{clients[0].name}</span> <br />
-      <span className="userClient">Endereço:</span> <br />
-      <span className="userAddress">
+      <p className="nameClient">{clients[0].name}</p> <br />
+      <p className="userClient">Endereço:</p> <br />
+      <p className="userAddress">
         {clients[0].address.street} {clients[0].address.suite}{" "}
-      </span>
+      </p>
       <br />
-      <span className="userAddress">
+      <p className="userAddress">
         {clients[0].address.city}- CEP: {clients[0].address.zipcode}
-      </span>
+      </p>
     </section>
   );
 };
