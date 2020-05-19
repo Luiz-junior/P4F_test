@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 
 import TabMenu from '../../components/TabMenu'
 import ListClients from '../../components/ListClients'

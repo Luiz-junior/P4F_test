@@ -1,41 +1,50 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import { ClientsContainer, ListContainer } from './styles'
-import { getClients, idClientSelected } from '../../store/actions/clientsAction'
+import { ClientsContainer, ListContainer } from "./styles";
+import {
+  getClients,
+  idClientSelected,
+} from "../../store/actions/clientsAction";
 
 function ListClients() {
-  let dispatch = useDispatch()
+  let dispatch = useDispatch();
 
-  let { clients } = useSelector(state => ({
-    clients: state.clientsReducer.clients
-  }))
+  let { clients } = useSelector((state) => ({
+    clients: state.clientsReducer.clients,
+  }));
 
   useEffect(() => {
-    dispatch(getClients())
-  }, [])
+    dispatch(getClients());
+  }, []);
 
   const onSelectClient = (id) => {
-    dispatch(idClientSelected(id))
-  }
+    dispatch(idClientSelected(id));
+  };
 
-  if(!clients.length) {
-    <strong>Carregando...</strong>
-  }
+  if (!clients.length)
+    return (
+      <strong style={{ position: "absolute", top: "130px", color: "#01579b" }}>
+        Carregando...
+      </strong>
+    );
 
   return (
     <ClientsContainer>
-      {clients.map((client, index) => {
+      {clients.map((client) => {
         return (
-          <ListContainer key={client.id} onClick={() => onSelectClient(client.id)}>
+          <ListContainer
+            key={client.id}
+            onClick={() => onSelectClient(client.id)}
+          >
             <div className="nameClient">{client.name}</div>
             <div className="userClient">{client.username}</div>
             <div className="companyClient">{client.company.name}</div>
           </ListContainer>
-        )
+        );
       })}
     </ClientsContainer>
-  )
+  );
 }
 
-export default ListClients
+export default ListClients;

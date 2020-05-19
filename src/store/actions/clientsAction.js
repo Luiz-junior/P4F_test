@@ -21,7 +21,6 @@ export const getClients = () => {
 
 export const getPhotosClient = (id) => {
   return async dispatch => {
-    //const res = await api.get(`/photos?albumId=​${id}`)
     let res = await axios.get(`https://jsonplaceholder.typicode.com/photos?albumId=${id}&_limit=10`)
     
     try {

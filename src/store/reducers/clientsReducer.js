@@ -22,6 +22,8 @@ const clientsReducer = (state = initialState, action) => {
       return { ...state, clientSelected: action.clientSelected }
     case GET_POSTS_CLIENT:
       return { ...state, postsClient: action.postsClient }
+    case ERROR:
+      return { ...state, error: action.errorStatus }
     default:
       return state;
   }
